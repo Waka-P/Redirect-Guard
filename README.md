@@ -4,6 +4,16 @@
 
 広告 SDK(Pangle、Fyber、Meta Audience Network 等)による、悪質な自動リダイレクト(広告視聴後や表示中に、ユーザーが何も操作していないのに勝手に Google Play や外部サイトへ飛ばされる挙動)を無効化することを主な目的としています。
 
+## インストール
+
+以下の QR コードから最新版の APK をダウンロードできます([Releases](https://github.com/Waka-P/Redirect-Guard/releases/latest) にも同じものがあります)。
+
+<p align="center">
+  <img src="docs/qr-download.png" alt="ダウンロード用QRコード" width="200" />
+</p>
+
+Google Play 経由の配布ではないため、インストール時に「提供元不明のアプリ」の警告が表示されます。内容を理解した上でインストールしてください。
+
 ## なぜ「アクセシビリティ」権限が必要なのか
 
 このアプリは以下の目的のみに Accessibility Service を使用します。
@@ -44,9 +54,28 @@ Android SDK と JDK 17 以上が必要です。
 
 生成された APK は `app/build/outputs/apk/debug/app-debug.apk` に出力されます。
 
+### リリースビルド(配布用)
+
+配布用 APK には署名が必要です。
+
+1. `keystore.properties.example` を `keystore.properties` にリネームし、署名鍵の情報を入力する(このファイルは `.gitignore` 済みでコミットされません)
+2. 署名鍵をまだ持っていない場合は作成する:
+   ```bash
+   keytool -genkey -v -keystore release.jks -keyalg RSA -keysize 2048 -validity 10000 -alias redirectguard
+   ```
+3. リリースビルドを実行する:
+   ```bash
+   ./gradlew assembleRelease
+   ```
+   `app/build/outputs/apk/release/app-release.apk` が生成されます(minify/リソース圧縮が有効)。GitHub Releases にアップロードする際は `RedirectGuard.apk` にリネームしてください。
+
+`keystore.properties` が無い状態で `assembleRelease` を実行した場合は debug 鍵で署名されます(**配布には使わないでください**)。
+
 ## 配布形態
 
-Google Play のポリシー上、Accessibility 権限の使用目的次第では審査に通らない可能性が高いため、サイドロード配布(GitHub Releases 等)を前提としています。
+Google Play のポリシー上、Accessibility 権限の使用目的次第では審査に通らない可能性が高いため、サイドロード配布(GitHub Releases)を前提としています。
+
+新しいバージョンをリリースする際は、GitHub Releases にアップロードする APK ファイル名を **`RedirectGuard.apk`** に統一してください。README の QR コード / ダウンロードリンクは `.../releases/latest/download/RedirectGuard.apk` という固定URLを指しているため、この名前を守ることで QR コードを毎回作り直す必要がなくなります。
 
 ## 使い方
 

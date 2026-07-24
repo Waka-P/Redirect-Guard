@@ -1,8 +1,21 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
 }
+
+// リリース署名情報は keystore.properties (.gitignore 済み・非コミット) から読み込む。
+// ファイルが無い場合(CI/クローン直後等)はリリースビルドを debug 署名にフォールバックし、
+// 署名鍵が無くても assembleDebug 等の通常ビルドが壊れないようにする。
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { load(it) }
+    }
+}
+val hasReleaseSigningConfig = keystorePropertiesFile.exists()
 
 android {
     namespace = "com.example.redirectguard"
@@ -16,9 +29,28 @@ android {
         versionName = "0.1.0-mvp"
     }
 
+    signingConfigs {
+        if (hasReleaseSigningConfig) {
+            create("release") {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = if (hasReleaseSigningConfig) {
+                signingConfigs.getByName("release")
+            } else {
+                // keystore.properties 未設定時は debug 鍵でビルド可能にしておく(配布用APKには使わないこと)。
+                signingConfigs.getByName("debug")
+            }
         }
     }
 
