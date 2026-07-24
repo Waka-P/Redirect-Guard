@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.RedirectGuard" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
+        <item name="colorPrimary">@color/surface</item>
+        <item name="colorPrimaryDark">@color/background</item>
+        <item name="colorAccent">#2F6FED</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="SectionLabel">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingTop">20dp</item>
+    </style>
+
+    <style name="Widget.RedirectGuard.Button.Pill" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="Widget.RedirectGuard.Button.Pill.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="Widget.RedirectGuard.Button.Pill.Text" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="cornerRadius">24dp</item>
+    </style>
+</resources>

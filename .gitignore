@@ -1,0 +1,33 @@
+# Gradle
+.gradle/
+build/
+app/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Local configuration (SDK/NDK path, per-machine)
+local.properties
+
+# Claude Code 関連(GitHubに上げない)
+.claude/
+
+# 仕様書(GitHubに上げない)
+spec_ad_redirect_blocker.md
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.DS_Store
+
+# Signing (絶対にコミットしない)
+*.jks
+*.keystore
+keystore.properties
+
+# Log/captures
+*.log
+captures/
+.navigation/
+
+# APK / bundle outputs (build/ で除外済みだが念のため)
+*.apk
+*.aab

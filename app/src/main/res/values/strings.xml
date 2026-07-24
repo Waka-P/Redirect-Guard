@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Redirect Guard</string>
+    <string name="select_target_app">監視対象アプリの選択（複数可）</string>
+    <string name="done">完了</string>
+    <string name="allow_list">許可リスト</string>
+    <string name="detection_logs">検知ログ</string>
+    <string name="accessibility_status_enabled">有効</string>
+    <string name="accessibility_status_disabled">無効</string>
+    <string name="accessibility_settings_button">アクセシビリティ設定</string>
+    <string name="no_target_app_selected">未選択</string>
+    <string name="monitoring_toggle">監視 ON/OFF</string>
+    <string name="add_package">追加</string>
+    <string name="remove">削除</string>
+    <string name="false_positive_rate_format">誤検知: %1$d / %2$d 件 (%3$d%%)</string>
+    <string name="accessibility_service_description">監視対象アプリ使用中に、ユーザー操作を伴わない自動的な画面遷移(広告SDKによる強制的な外部アプリ起動など)を検知し、元のアプリへ復帰させるために使用します。設定で「広告の自動クローズ」を有効にした場合のみ、全画面広告の「閉じる」ボタン検出のために画面内容(ボタンのラベル/IDのみ)を読み取ります。デフォルトでは画面内容の読み取りは行いません。</string>
+    <string name="auto_close_ad_toggle">広告の自動クローズ</string>
+    <string name="auto_close_ad_description">閉じるボタンを自動タップ(実験的)</string>
+    <string name="auto_skip_ad_toggle">広告のスキップ自動タップ</string>
+    <string name="auto_skip_ad_description">スキップボタンを自動タップ(実験的)</string>
+    <string name="section_targets">監視対象</string>
+    <string name="section_controls">動作設定</string>
+    <string name="section_theme">テーマ</string>
+    <string name="section_more">その他</string>
+    <string name="search_apps_hint">アプリを検索</string>
+    <string name="filter_all">すべて</string>
+    <string name="filter_selected">監視中</string>
+    <string name="filter_unselected">未選択</string>
+    <string name="loading_apps">アプリ一覧を読み込み中…</string>
+    <string name="allow_list_warning">⚠ 警告: ここを編集すると誤検知/見逃しの挙動が変わります。内容が分からない場合は絶対に変更しないでください。</string>
+    <string name="log_list_warning">誤検知チェックは今後のしきい値調整の参考記録用で、動作自体は変わりません。</string>
+    <string name="confirm_remove_title">削除の確認</string>
+    <string name="confirm_remove_message">「%1$s」を許可リストから削除しますか？</string>
+    <string name="cancel">キャンセル</string>
+    <string name="notification_monitoring_title">Redirect Guard 監視中</string>
+    <string name="notification_monitoring_text">自動リダイレクトを検知したら元のアプリに戻します</string>
+    <string name="notification_pause_action">監視を一時停止</string>
+</resources>
